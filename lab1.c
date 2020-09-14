@@ -3,6 +3,21 @@
 #include <math.h>
 #include <string.h>
 
+
+int scan_1() {
+    char line[256];
+    int i;
+    if (fgets(line, sizeof(line), stdin)) {
+        int res = sscanf(line, "%d", &i);
+        if (1 != res) {
+            printf("error!");
+            return 0;
+        }
+        return res;
+    }
+    return -1;
+}
+
 float function_set(float x, float a, float b, float c) {
     
     float result = 0.0;
@@ -35,54 +50,17 @@ void print(const char * str) {
 
 int main(int argc, char *argv[]) {
 
-
-    print("hello");
-
-
-    char line[256];
-    int i, ii;
-    if (fgets(line, sizeof(line), stdin)) {
-        if (2 != sscanf(line, "%d %d", &i, &ii)) {
-            printf("error!");
-            return 0;
-        }
-    }
-
-    int value = 0;
-
-    while (value >= 0) {
-        printf("Enter a number: ");
-        if (scanf("%d",&value) != 1) {
-            printf("error: invalid input\n");
-            return 1;
-        }
-        printf("The number you entered is %d\n", value);
-    }
-
-    if (argc < 6) {
+    if (argc < 7) {
         fputs("invalid argument count\n", stderr);
         return 1;
     }
 
     float k = (float)atof(argv[1]);
     float h = (float)atof(argv[2]);
-
-    if (h <= k) {
-        fputs("Xh less than Xk\n", stderr);
-        return 1;
-    }
-
-    float step;
-
-    printf("Enter step size: ");
-
-    if (scanf("%f", &step) != 1) {
-        fputs("error: invalid input\n", stderr);
-        return 1;
-    }
+    float step = (float)atof(argv[3]);
 
     for (k; k <= h; k += step) {
-        float var = function_set(k, (float)atof(argv[3]), (float)atof(argv[4]), (float)atof(argv[5]));
+        float var = function_set(k, (float)atof(argv[4]), (float)atof(argv[5]), (float)atof(argv[6]));
     
         printf("%.2f\n", var);
     }
