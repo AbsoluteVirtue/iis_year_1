@@ -1,3 +1,8 @@
-.vscode/
+.vscode/*
+*.code-workspace
 
+# Local History for Visual Studio Code
+.history/
+
+# Built files
 *.exe
