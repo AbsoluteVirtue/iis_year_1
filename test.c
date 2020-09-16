@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <ctype.h>
 
 
 void input() {
@@ -40,7 +40,10 @@ void array_allocation (int size) {
 
 int main(int argc, char const *argv[])
 {
-
-    array_allocation(5);
+    int a = 88;
+    int * pa = &a;
+    int * pz = pa + 1;
+    // *pz = 88;
+    int r = (pz - pa);
 
 }
