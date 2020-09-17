@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <ctype.h>
 
@@ -39,22 +40,47 @@ void array_allocation (int size) {
 }
 
 
-size_t size_arr(int * p) {
+void strcopy(char * p, char * new, int N) {
 
-    size_t res = sizeof(p) / sizeof(*p);
+    for (int i = 0; i<=N; i += 1) {
 
-    return  res;
+        if (!p[i]) break;
+
+        new[i] = p[i];
+    }
+    new[N] = '\0';
+}
+
+
+void fib(const int n) {
+
+    int res[n + 1];
+    res[0] = 0;
+    res[1] = 1;
+    for (int i = 2; i <= n; i += 1) {
+        res [i] = res[i-1] + res[i-2];
+        printf("%i\t", res[i]);
+    }
 }
 
 
 int main(int argc, char const *argv[]) {
 
-    int arr [] = {13, 33, 45};
-    char sarr [] = {'s', 'a', 's', 's'};
+    fib(19);
 
-    size_t ss = sizeof(sarr);
+    const int N = 4;
+
+    char * new = (char *) malloc(N + 1);
     
-    size_t size = size_arr(arr);
+    strcopy("string", new, N);
+
+    for (int i = 0; i < 4; i += 1) {
+        printf("%c\t", new[i]);
+    }
+
+    free(new);
+
+    int arr [] = {1, 2 ,4, 5};
 
     int sa = (&arr)[1] - arr;
 
