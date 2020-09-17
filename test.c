@@ -63,8 +63,30 @@ void fib(const int n) {
     }
 }
 
+void single_pass_min_2(int * arr, int size) {
+
+    int tmp_0 = arr[0];
+    int tmp_1 = arr[1];
+
+    for (int i = 2; i < size; ++i) {
+        if (arr[i] < tmp_0) {
+            if (tmp_1 > tmp_0) {
+                tmp_1 = tmp_0;
+            }
+            tmp_0 = arr[i];
+        } else if (arr[i] < tmp_1 && arr[i] != tmp_0) {
+            tmp_1 = arr[i];
+        }
+    }
+
+}
+
 
 int main(int argc, char const *argv[]) {
+
+    int array[] = {2, 4, 6, 12, 55, 0};
+
+    single_pass_min_2(array, 6);
 
     fib(19);
 
