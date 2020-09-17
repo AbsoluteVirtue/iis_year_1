@@ -38,8 +38,26 @@ void array_allocation (int size) {
 
 }
 
-int main(int argc, char const *argv[])
-{
+
+size_t size_arr(int * p) {
+
+    size_t res = sizeof(p) / sizeof(*p);
+
+    return  res;
+}
+
+
+int main(int argc, char const *argv[]) {
+
+    int arr [] = {13, 33, 45};
+    char sarr [] = {'s', 'a', 's', 's'};
+
+    size_t ss = sizeof(sarr);
+    
+    size_t size = size_arr(arr);
+
+    int sa = (&arr)[1] - arr;
+
     int a = 88;
     int * pa = &a;
     int * pz = pa + 1;
