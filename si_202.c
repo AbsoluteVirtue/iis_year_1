@@ -84,32 +84,13 @@ void single_pass_min_2(int * arr, int size) {
 
 int main(int argc, char const *argv[]) {
 
-    int array[] = {2, 4, 6, 12, 55, 0};
-
-    single_pass_min_2(array, 6);
-
-    fib(19);
-
-    const int N = 4;
-
-    char * new = (char *) malloc(N + 1);
-    
-    strcopy("string", new, N);
-
-    for (int i = 0; i < 4; i += 1) {
-        printf("%c\t", new[i]);
-    }
-
-    free(new);
-
-    int arr [] = {1, 2 ,4, 5};
-
-    int sa = (&arr)[1] - arr;
-
     int a = 88;
     int * pa = &a;
     int * pz = pa + 1;
     // *pz = 88;
     int r = (pz - pa);
+
+    // int arr [] = {1, 2 ,4, 5};
+    // int sa = (&arr)[1] - arr;
 
 }
