@@ -4,6 +4,9 @@
 #include <string.h>
 
 
+#define ERROR 100000.
+
+
 int scan_1() {
     char line[256];
     int i;
@@ -16,22 +19,6 @@ int scan_1() {
         return res;
     }
     return -1;
-}
-
-float function_set(float x, float a, float b, float c) {
-    
-    float result = 0.0;
-
-    if ((x + a) < 0.0 && c == 0.0) {
-        result = (1.0/(a * x)) - b;
-    } else if ((x + a) > 0.0 && c != 0.0) {
-        result = (x - a)/sin(x);
-    } else {
-        result = (x * 10.0)/(c - 6.0);
-    };
-
-    return result;
-
 }
 
 
@@ -48,6 +35,25 @@ void print(const char * str) {
 }
 
 
+float function_set(float x, float a, float b, float c) {
+    
+    float result = 0.0;
+
+    if ((x + a) < 0.0 && c == 0.0) {
+        result = (1.0/(a * x)) - b;
+    } else if ((x + a) > 0.0 && c != 0.0) {
+        if (!sin(x)) { 
+            return ERROR;
+        }
+        result = (x - a)/sin(x);
+    } else {
+        result = (x * 10.0)/(c - 6.0);
+    };
+
+    return result;
+}
+
+
 int main(int argc, char *argv[]) {
 
     if (argc < 7) {
@@ -61,6 +67,10 @@ int main(int argc, char *argv[]) {
 
     for (k; k <= h; k += step) {
         float var = function_set(k, (float)atof(argv[4]), (float)atof(argv[5]), (float)atof(argv[6]));
+        if (var == ERROR) {
+            printf("error\n");
+            continue;
+        }
     
         printf("%.2f\n", var);
     }
