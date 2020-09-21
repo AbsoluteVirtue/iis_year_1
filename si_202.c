@@ -52,17 +52,6 @@ void strcopy(char * p, char * new, int N) {
 }
 
 
-void fib(const int n) {
-
-    int res[n + 1];
-    res[0] = 0;
-    res[1] = 1;
-    for (int i = 2; i <= n; i += 1) {
-        res [i] = res[i-1] + res[i-2];
-        printf("%i\t", res[i]);
-    }
-}
-
 void single_pass_min_2(int * arr, int size) {
 
     int tmp_0 = arr[0];
@@ -82,15 +71,20 @@ void single_pass_min_2(int * arr, int size) {
 }
 
 
+int fibonacci(int number_of_items) {
+
+    int array [number_of_items];
+    array[0] = 0;
+    array[1] = 1;
+    for (int i = 2; i <= number_of_items; ++i) {
+        array[i] = array[i - 1] + array[i - 2];
+    }
+    return array[number_of_items];
+}
+
+
 int main(int argc, char const *argv[]) {
 
-    int a = 88;
-    int * pa = &a;
-    int * pz = pa + 1;
-    // *pz = 88;
-    int r = (pz - pa);
-
-    // int arr [] = {1, 2 ,4, 5};
-    // int sa = (&arr)[1] - arr;
+    int res = fibonacci(20);
 
 }
