@@ -1,74 +1,80 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <math.h>
+#include <time.h>
+
+#define LENGTH 7
 
 
+int _get_random_range(int lower, int upper) {
 
-void print_array_string(char _a []) {
-
-    int size = strlen(_a);
-
-    char * ap = (char *) malloc(size + 1);
-
-    for (int j = 0; j < size; j += 1) {
-        ap[j] = _a[j];
-    }
-    ap[size] = '\0';
-
-    for (int i = 0; i < size + 1; i += 1) {
-        printf("%c\t", ap[i]);
-    }
-
-    free(ap);
-
+    return lower + ( rand() % (upper - lower) );
 }
 
 
-void print(int _a [], int size) {
+void _print_array(int _a [], int size) {
 
-    for (int i = 0; i < size; i += 1) {
-
+    for (int i = 0; i < size; ++i) {
         printf("%d\t", _a[i]);
-
     }
 }
 
 
-int compare (const void * a, const void * b)
-{
-  return ( *(int*)a - *(int*)b );
+int _compare(const void * a, const void * b) {
+
+    return ( *(int*)a - *(int*)b );
 }
 
 
-int main(int argc, char const *argv[])
+void main(int argc, char const *argv[])
 {
+    // инициализация массива данными пользователя через список аргументов argv
+    int array_arg [LENGTH] = {};
 
-    int len = argc - 1;
+    for (int i = 0; i < LENGTH; ++i) {
+        array_arg[i] = (int)atoi(argv[i + 1]);
+    }
 
-    int a [len];
+    // инициализация массива псевдо-случайными значениями
+    int array_rand [LENGTH] = {};
 
-    int sum = 0;
+    // инициализация ряда псевдо-случайных чисел текущим временем системы
+    srand( time(0) );
 
-    int i = 0;
-    while (i < len) {
+    for (int i = 0; i < LENGTH; ++i) {
+        array_rand[i] = _get_random_range(-100, 100);
+    }
 
-        a[i] = (int)atof(argv[i + 1]);
+    // инициализация массива числами из ряда Фибоначчи
+    int array_fib [LENGTH] = {};
 
-        if (a[i] > 0) {
-            sum += a[i];
+    for (int i = 0; i < LENGTH; ++i) {
+        if (i < 2) {
+            array_fib[i] = i;
+            continue;
         }
+        array_fib[i] = array_fib[i - 1] + array_fib[i - 2];
+    } 
 
-        i += 1;
-    }
+    // инициализация массива буквально
+    int array_lit [] = {67, -90, 45, 78, -13, -456, 4};
 
-    qsort(a, argc, sizeof(int), compare);
 
-    printf("Sum: %d\n", sum);
-    printf("Sorted array: ");
-    for (int idx = 0; idx < len; idx += 1) {
-        printf("%d,\t", a[idx]);
-   }
+    // пример фильтрации элементов массива (чет-нечет)
+    for (int i = 0; i < LENGTH; ++i) {
+        if (array_lit[i] % 2) {
+            printf("%d is odd\n", array_lit[i]);
+        } else {
+            printf("%d is even\n", array_lit[i]);
+        }
+    } 
 
-    return 0;
+
+    // быстрая сортировка массива (см. ф-цию сравнения выше)
+    qsort(array_lit, LENGTH, sizeof(*array_lit), _compare);
+
+    printf("Sorted array:\t");
+
+    _print_array(array_lit, LENGTH);
+
+    return;
 }

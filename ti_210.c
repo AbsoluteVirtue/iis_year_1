@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 
-void input() {
+void input () {
 
     char line[256];
     int i;
@@ -40,7 +40,7 @@ void array_allocation (int size) {
 }
 
 
-void strcopy(char * p, char * new, int N) {
+void strcopy (char * p, char * new, int N) {
 
     for (int i = 0; i<=N; i += 1) {
 
@@ -52,7 +52,7 @@ void strcopy(char * p, char * new, int N) {
 }
 
 
-void single_pass_min_2(int * arr, int size) {
+void single_pass_min_2 (int * arr, int size) {
 
     int tmp_0 = arr[0];
     int tmp_1 = arr[1];
