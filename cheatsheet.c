@@ -103,6 +103,13 @@ int fibonacci(int number_of_items) {
 }
 
 
+void two_dim_array_single_pass(int array [][]) {
+    for (int * p = (int *)array; p < (int *)array + (sizeof(array) / sizeof(*(int *) array)); ++p) {
+        printf("%d\n", *p);
+    }
+}
+
+
 int main(int argc, char const *argv[]) {
 
     int res = fibonacci(20);
