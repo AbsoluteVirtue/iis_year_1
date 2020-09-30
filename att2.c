@@ -23,7 +23,10 @@ int has_str(char * src_str, char * cmp_str) {
 
     free(tmp_str);
 
-    if (!strcmp(items[0], cmp_str)) {
+    char * fmt_str;
+    sprintf(fmt_str, "%s,%s", items[0], items[1]);
+
+    if (!strcmp(fmt_str, cmp_str)) {
         return 1;
     }
 
