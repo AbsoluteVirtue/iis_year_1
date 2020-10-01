@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define LENGTH 7
+#define ARR_LEN 7
 
 
 int _get_random_range(int lower, int upper) {
@@ -28,26 +28,26 @@ int _compare(const void * a, const void * b) {
 void main(int argc, char const *argv[])
 {
     // инициализация массива данными пользователя через список аргументов argv
-    int array_arg [LENGTH] = {};
+    int array_arg [ARR_LEN] = {};
 
-    for (int i = 0; i < LENGTH; ++i) {
+    for (int i = 0; i < ARR_LEN; ++i) {
         array_arg[i] = (int)atoi(argv[i + 1]);
     }
 
     // инициализация массива псевдо-случайными значениями в заданном диапазоне
-    int array_rand [LENGTH] = {};
+    int array_rand [ARR_LEN] = {};
 
     // инициализация ряда псевдо-случайных чисел текущим временем системы
     srand( time(0) );
 
-    for (int i = 0; i < LENGTH; ++i) {
+    for (int i = 0; i < ARR_LEN; ++i) {
         array_rand[i] = _get_random_range(-100, 100);
     }
 
     // инициализация массива числами из ряда Фибоначчи
-    int array_fib [LENGTH] = {};
+    int array_fib [ARR_LEN] = {};
 
-    for (int i = 0; i < LENGTH; ++i) {
+    for (int i = 0; i < ARR_LEN; ++i) {
         if (i < 2) {
             array_fib[i] = i;
             continue;
@@ -60,7 +60,7 @@ void main(int argc, char const *argv[])
 
 
     // пример фильтрации элементов массива (чет-нечет)
-    for (int i = 0; i < LENGTH; ++i) {
+    for (int i = 0; i < ARR_LEN; ++i) {
         if (array_lit[i] % 2) {
             printf("%d is odd\n", array_lit[i]);
         } else {
@@ -70,11 +70,11 @@ void main(int argc, char const *argv[])
 
 
     // быстрая сортировка массива (см. ф-цию сравнения выше)
-    qsort(array_lit, LENGTH, sizeof(*array_lit), _compare);
+    qsort(array_lit, ARR_LEN, sizeof(*array_lit), _compare);
 
     printf("Sorted array:\t");
 
-    _print_array(array_lit, LENGTH);
+    _print_array(array_lit, ARR_LEN);
 
     return;
 }

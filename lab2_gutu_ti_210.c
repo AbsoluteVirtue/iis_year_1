@@ -1,21 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
-void main () {
-    const maximum_elements = 8;
-    int result, arr[maximum_elements], i,  min_number, sum = 0, counter = 0;
+#define maximum_elements 8
 
-    for (i = 0; i < maximum_elements; i++)
-    {
-        printf("arr[%d] = ", i);
-        scanf("%d", &arr[i]);
-    }
+void main () {
+    int result, arr[maximum_elements] = {1, -2, 13, 4, -5, 66, 7, 0}; 
+    int i,  min_number, sum = 0, counter = 0;
+
 // Находим количество елементов массива равных 0:
     for(i = 0; i < maximum_elements; i++){
         if(arr[i] == 0){
             counter++;
         }
     }
+    printf("Количество елементов массива равных 0: %.0d\n", counter );
+
 // Находим минимальный элемент массива:
     int min = arr[0];
     for(i = 0; i < maximum_elements; i++){
@@ -34,9 +34,11 @@ void main () {
     for(i = min_number + 1; i < maximum_elements; i++){
         sum+= arr[i];
     }
+    printf("Сумма элементов массива, расположенных после минимального элемента: %d\n", sum);
+
 
 // Сортируем массив по заданию:
-for (i = 0; i < maximum_elements; i++)
+    for (i = 0; i < maximum_elements; i++)
     {
         for (int j = i + 1; j < maximum_elements; j++)
         {
@@ -49,9 +51,6 @@ for (i = 0; i < maximum_elements; i++)
         }
     }
 
-
-    printf("Количество елементов массива равных 0: %.0d\n", counter );
-    printf("Сумма элементов массива, расположенных после минимального элемента: %d\n", sum);
     printf("Отсортированный массив:\n");
     for (i = 0; i < maximum_elements; printf("%d ", arr[i++]));
 
