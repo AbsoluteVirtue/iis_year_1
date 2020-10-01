@@ -50,6 +50,12 @@ float function_set(float x, float a, float b, float c) {
         result = (x * 10.0)/(c - 6.0);
     };
 
+    if( ! ( ((int)floor(a) | (int)floor(b)) & ((int)floor(a) | (int)floor(c)))) { // 00001010 & 00000100 = 00000000
+        printf("integral value");
+    } else {
+        printf("floating point value");
+    }
+
     return result;
 }
 
@@ -65,7 +71,7 @@ int main(int argc, char *argv[]) {
     float h = (float)atof(argv[2]);
     float step = (float)atof(argv[3]);
 
-    for (k; k <= h; k += step) {
+    do {
         float var = function_set(k, (float)atof(argv[4]), (float)atof(argv[5]), (float)atof(argv[6]));
         if (var == ERROR) {
             printf("error\n");
@@ -73,7 +79,9 @@ int main(int argc, char *argv[]) {
         }
     
         printf("%.2f\n", var);
-    }
+
+        k += step;
+    } while (k <= h);
 
     return 0;
 }
