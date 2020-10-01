@@ -103,7 +103,7 @@ void main(int argc, char const *argv[]) {
     strncpy_simple(dest1, "hello", 7);
     printf("%s", dest1);
 
-    // реализация с указателями 
+    // бонус: реализация копирования с указателями 
     char dest2 [ARR_LENGTH] = {};
     strncpy_smart(dest2, "world", 4);
     printf("%s", dest2);

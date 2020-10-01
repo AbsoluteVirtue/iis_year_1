@@ -3,6 +3,13 @@
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
+#include <time.h>
+
+
+int _get_random_range(int lower, int upper) {
+
+    return lower + ( rand() % (upper - lower) );
+}
 
 
 void input() {
@@ -112,6 +119,14 @@ void two_dim_array_single_pass(int array [][4], int N, int M) {
 
 int main(int argc, char const *argv[]) {
 
-    int res = fibonacci(20);
+    int array [9] = {};
+
+    srand( time(0) );
+
+    for (int i = 0; i < 9; ++i) {
+        array[i] = _get_random_range(-100, 100);
+    }
+
+    single_pass_min_2(array, 9);
 
 }
