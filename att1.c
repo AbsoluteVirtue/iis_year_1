@@ -41,10 +41,9 @@ void main(int argc, char const *argv[]) {
         if (arr_chain[i] == arr_chain[i - 1]) {
             ++counter;
         } else {
-            if (max < counter) max = counter;
-
             counter = 1;
         }
+        if (max < counter) max = counter;
     }
     printf("%d\n", counter);
 

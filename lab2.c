@@ -25,7 +25,7 @@ int _compare(const void * a, const void * b) {
 }
 
 
-void main(int argc, char const *argv[])
+void main(int argc, char const * argv[])
 {
     // инициализация массива данными пользователя через список аргументов argv
     int array_arg [ARR_LEN] = {};
