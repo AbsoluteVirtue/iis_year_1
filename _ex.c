@@ -61,29 +61,9 @@ void stable_partition(int* box, int size) {
 int main(int argc, char const *argv[])
 {
 
-    int A[N] = {9, -2, 4, 8, -4, 3, -5, 1};
-
-    int count = 0;
-    for (int i = 0; i < N; ++i) {
-
-        if (A[i] >= -5 and A[i] <= 4 and i < N - 1 - count) {
-            for (int j = i; j < N; ++j) {
-                if(j == N - 1) 
-                    break;
-                else{
-                    A[j] = A[j + 1];
-                }
-            }
-            A[N - 1 - count] = 0;
-            count++;
-            i--;
-        }
-    }
-
+    int A[N] = {0, -2, 4, 0, -4, 3, -5, 1};
     int B[N] = {3, -4, 5, 7, 1, -2, 4, 0};
-
     int R[N + N] = {};
-
     int min = INT_MAX;
     for (int j = 0; j < N + N; j++)
     {
@@ -111,18 +91,6 @@ int main(int argc, char const *argv[])
         }
         
         R[j] = min;
-    }
-
-    int min1 = A[0], min2 = A[0];
-
-    for (size_t i = 0; i < N; i++)
-    {
-        if(A[i] < min1) {
-            min2 = min1;
-            min1 = A[i];
-        } else if (min2 > A[i]) {
-            min2 = A[i];
-        }
     }
 
     return 0;
