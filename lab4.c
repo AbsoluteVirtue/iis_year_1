@@ -20,7 +20,7 @@ typedef struct _record
 {
     time ts;
 
-} record_t;
+} record;
 
 
 void _date_init(time * source) {
@@ -35,7 +35,7 @@ void _date_init(time * source) {
 int main(int argc, char const *argv[])
 {
     // выделение памяти под массив, все элементы обнуляются в случае успешной операции
-    record_t * array = (record_t *)calloc(N, sizeof(record_t));
+    record * array = (record *)calloc(N, sizeof(record));
     if (array == NULL) {
         return -1;
     }
@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
         // изменения поля структуры по значению
         date.days += i;
         // инициализация структуры буквально
-        record_t rec = {date};
+        record rec = {date};
         array[i] = rec;
     }
 
