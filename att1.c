@@ -1,6 +1,10 @@
 #include <math.h>
 #include <stdio.h>
 
+#ifndef INT_MAX
+#define INT_MAX 99999
+#endif
+
 #define ARR_LENGTH 7
 #define true 1
 #define false 0
