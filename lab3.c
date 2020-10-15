@@ -28,6 +28,7 @@ int main(int argc, char const *argv[])
     // доступ к конкретному элементу по указателю
     printf("Access by cast pointer: %d\n", *((int *)array + array_index*ROW_LENGTH + row_index));
 
+
     // вывод двумерного массива по индексам ряда/элемента
     for (int i = 0; i < NO_OF_ROWS; ++i) {
         for (int j = 0; j < ROW_LENGTH; ++j) {
@@ -36,12 +37,14 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
+
     // размеры массива в памяти: целиком, одного ряда (внутреннего массива), одного элемента ряда - в байтах
     size_t total_size = sizeof(array);
     size_t row_size = sizeof(*array);
     size_t item_size = sizeof(*(int *) array);
 
     size_t array_total_items =  (total_size / item_size);
+
 
     // максимальное из чисел, встречающихся в массиве более одного раза 
     qsort(array, array_total_items, item_size, _compare);
@@ -59,6 +62,7 @@ int main(int argc, char const *argv[])
     }
 
     printf("Max item that repeats at least once: %d\n", max_repeated_item);
+
 
     // количество строк, не содержащих ни одного нулевого элемента
     int counter = 0;

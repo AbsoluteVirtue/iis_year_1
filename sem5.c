@@ -44,7 +44,6 @@ int main(int argc, char const *argv[])
         sum += array_lit[min];
     }
 
-
     for (int i = 0; i < ARR_LEN; ++i) {
         for (int j = i + 1; j < ARR_LEN; ++j) {
             if (array_lit[i] > array_lit[j]) {
