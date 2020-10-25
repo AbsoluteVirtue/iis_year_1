@@ -4,6 +4,10 @@
 #include <math.h>
 #include <ctype.h>
 #include <time.h>
+#include <iso646.h>
+
+
+#define ARRAY_LENGTH 8
 
 
 int _get_random_range(int lower, int upper) {
@@ -119,14 +123,37 @@ void two_dim_array_single_pass(int array [][4], int N, int M) {
 
 int main(int argc, char const *argv[]) {
 
-    int array [9] = {};
-
-    srand( time(0) );
-
-    for (int i = 0; i < 9; ++i) {
-        array[i] = _get_random_range(-100, 100);
+    int A[ARRAY_LENGTH] = {0, -2, 4, 0, -4, 3, -5, 1};
+    int B[ARRAY_LENGTH] = {3, -4, 5, 7, 1, -2, 4, 0};
+    int R[ARRAY_LENGTH * 2] = {};
+    int min = INT_MAX;
+    for (int j = 0; j < ARRAY_LENGTH * 2; j++)
+    {
+        int i = 0, k = 0;
+        min = INT_MAX;
+        int flag = -1;
+        for (; i < ARRAY_LENGTH; i++)
+        {
+            if (A[i] < min) {
+                min = A[i];
+                k = i;
+                flag = 1;
+            } else if (B[i] < min) {
+                min = B[i];
+                k = i;
+                flag = 0;
+            }
+        }
+        if (flag != -1) {
+            if (flag) {
+                A[k] = INT_MAX;
+            } else {
+                B[k] = INT_MAX;
+            }
+        }
+        
+        R[j] = min;
     }
 
-    single_pass_min_2(array, 9);
-
+    return 0;
 }

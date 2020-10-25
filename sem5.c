@@ -17,7 +17,8 @@ int _compare(const void * a, const void * b) {
 int main(int argc, char const *argv[])
 {
 
-    int array_lit [ARR_LEN] = {9, -90, 4, 78, -13, -456, 0};
+    int array_lit [ARR_LEN] = {0, -90, 0, 78, -13, -456, 0};
+    
 
     // найти минимальный элемент, количество нулевых элементов, четные/нечетные числа в массиве
     int min = 0;
