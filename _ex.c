@@ -33,7 +33,7 @@ void print_array(int X[], int len) {
 }
 
 
-void swap(int* a, int* b) { // меняет местами элементы
+void swap(int* a, int* b) {
     int tmp = *a;
     *a = *b;
     *b = tmp;
@@ -93,27 +93,37 @@ char* Reverse(char text[]) {
 }
 
 
+int ** allocate_array_2D(int rows, int columns) {
+    int ** array = (int **)malloc(rows * sizeof(int *) + rows * columns * sizeof(int));
+
+    int * start = (int *)((char*)array + rows * sizeof(int *));
+
+    for (int i = 0; i < rows; ++i) {
+        array[i] = start + i * columns;
+    }
+
+    return array;
+}
+
+
 int main(int argc, char const *argv[]) {
 
     srand(time(0));
 
-    int A [N] = {-3, -2, -1, 0, 4, 5, 8, 10};
-
-    char * res = Reverse("1234");
-
+    int A [N] = {-3, -2, -1, 0, 0, 5, 8, 10};
     int B [N] = {3, -4, -5, -7, -10, -20, -24, -30};
     int C [N + N] = {};
 
-    // int a = N - 1, b = 0;
+    int a = N - 1, b = 0;
     
-    // for (int i = 0; i < N + N; ++i) {
+    for (int i = 0; i < N + N; ++i) {
 
-    //     if (B[b] >= A[a]) {
-    //         C[i] = B[b++];
-    //     } else if (B[b] <= A[a]) {
-    //         C[i] = A[a--];
-    //     }
-    // }
+        if (B[b] >= A[a]) {
+            C[i] = B[b++];
+        } else if (B[b] <= A[a]) {
+            C[i] = A[a--];
+        }
+    }
 
     return 0;
 }
