@@ -1,6 +1,10 @@
 #include <math.h>
 #include <stdio.h>
 
+#ifndef INT_MAX
+#define INT_MAX 99999
+#endif
+
 #define ARR_LENGTH 7
 #define true 1
 #define false 0
@@ -106,6 +110,39 @@ void main(int argc, char const *argv[]) {
     char dest2 [ARR_LENGTH] = {};
     strncpy_smart(dest2, "world", 4);
     printf("%s", dest2);
+
+
+    // слияние двух массивов в третий массив за один проход
+    int A[ARR_LENGTH] = {0, -2, 4, 0, -4, 3, -5};
+    int B[ARR_LENGTH] = {3, -4, 5, 7, 1, -2, 4};
+    int R[ARR_LENGTH + ARR_LENGTH] = {};
+    int min = INT_MAX;
+    for (int j = 0; j < ARR_LENGTH + ARR_LENGTH; j++)
+    {
+        int i = 0, k = 0;
+        min = INT_MAX;
+        int flag = -1;
+        for (; i < ARR_LENGTH; i++)
+        {
+            if (A[i] < min) {
+                min = A[i];
+                k = i;
+                flag = 1;
+            } else if (B[i] < min) {
+                min = B[i];
+                k = i;
+                flag = 0;
+            }
+        }
+        if (flag != -1) {
+            if (flag) {
+                A[k] = INT_MAX;
+            } else {
+                B[k] = INT_MAX;
+            }
+        }
+        R[j] = min;
+    }
 
     return;
 }

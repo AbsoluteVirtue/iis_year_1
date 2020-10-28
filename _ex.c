@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include <iso646.h>
 #include <string.h>
 #include <time.h>
@@ -39,12 +40,15 @@ void swap(int* a, int* b) {
     *b = tmp;
 }
 
+
 void shift(int* beg, int* end) {
     while (beg + 1 != end) {
         swap(beg, beg + 1);
         ++beg;
     }
 }
+
+
 void stable_partition(int* box, int size) {
     int i;
     int* end = box + size;

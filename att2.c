@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define MAX_LINE 80
@@ -41,24 +42,11 @@ int main(int argc, char const *argv[]) {
         return 1;
     }
 
-    FILE * output = fopen("test_cpy.csv", "w");
-    if (output == NULL) {
-        fclose(input);
-        return 1;
-    }
-
     char line [MAX_LINE] = {};
 
     while(fgets(line, MAX_LINE, input)) {
         printf("%s", line);
-
-        int err = fputs(line, output);
-        if (err == EOF) {
-            break;
-        }
-
     }
 
-    fclose(output);
     fclose(input);
 }

@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
             printf("error\n");
             continue;
         }
-    
+
         printf("%.2f\n", var);
 
         k += step;

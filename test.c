@@ -37,6 +37,7 @@ int main(int argc, char const *argv[]) {
         int cmp = strncmp(constructed_string, line, MAX_LINE + 1);
         if (!cmp) {
             printf("%s", line);
+            rewind(input);
             break;
         }
     }
