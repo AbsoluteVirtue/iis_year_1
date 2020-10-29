@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <string.h>
 #include <iso646.h>
 #include <string.h>
 #include <time.h>
-
-
-#define N 8
 
 
 void printn(char c, int n) {
@@ -42,9 +38,12 @@ char* Reverse(char text[]) {
     return text;
 }
 
+#define N 6
+#define M 2
+
 
 int main(int argc, char const *argv[]) 
 {
-    
+
     return 0;
 }
