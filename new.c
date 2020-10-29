@@ -3,25 +3,29 @@
 #include <stdbool.h>
 
 
-typedef enum {False, True} boolean_t;
+#define N 8
 
-void print_dyn_array(int * A, int N) {
-    for (int i = 0; i < N; ++i) {
-        printf("%d\n", A[i]);
-    }
-}
+
+typedef enum {False, True} bool_t;
 
 
 int main(int argc, char const *argv[])
 {
-    int * A = (int *)calloc(3, sizeof(int));
-    for (int i = 0; i < 3; ++i) {
-        *(A + i) = i + 1;
+    int A [N] = {-3, -2, -1, 0, 4, 5, 8, 10};
+
+    int B [N] = {3, -4, -5, -7, -10, -20, -24, -30};
+    int C [N + N] = {};
+
+    int a = N - 1, b = 0;
+    
+    for (int i = 0; i < N + N; ++i) {
+
+        if (B[b] >= A[a]) {
+            C[i] = B[b++];
+        } else if (B[b] <= A[a]) {
+            C[i] = A[a--];
+        }
     }
-
-    print_dyn_array(A, 3);
-
-    free(A);
     
     return 0;
 }
