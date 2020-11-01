@@ -121,6 +121,23 @@ void two_dim_array_single_pass(int array [][4], int N, int M) {
 }
 
 
+int * merge_arrays(int * A, int * B, size_t N, size_t M) {
+    int a = N - 1, b = 0;
+    int * C = (int *)calloc(N + M, sizeof(int));
+    
+    for (int i = 0; i < N + N; ++i) {
+
+        if (B[b] >= A[a]) {
+            C[i] = B[b++];
+        } else if (B[b] <= A[a]) {
+            C[i] = A[a--];
+        }
+    }
+
+    return C;
+}
+
+
 int main(int argc, char const *argv[]) {
 
     int A[ARRAY_LENGTH] = {0, -2, 4, 0, -4, 3, -5, 1};
