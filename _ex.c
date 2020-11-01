@@ -7,9 +7,6 @@
 #include <time.h>
 
 
-#define N 4
-
-
 int _PtFuncCompare(const void * a, const void * b) {
 
     return (*(int *)a - *(int *)b);
@@ -110,41 +107,27 @@ int ** allocate_array_2D(int rows, int columns) {
 }
 
 
-int get_sum(int M[][N], int n) {
-    int sum = 0;
-    for (int i = n; i < N; ++i) {
-        sum += M[i - n][i];
-    }
-    return sum;
-}
+#define N 8
 
 
 int main(int argc, char const *argv[]) {
 
     srand(time(0));
 
-    int A [N][N] = {
-        {-3, -21, -1, 0},
-        {0, -5, 8, 10},
-        {24, -4, 11, 5},
-        {-4, -12, 6, 0},
-    };
+    int A[N] = {10, 11, 1, 12, -5, 4, -5, 0};
+
+    // int A [N][N] = {
+    //     {-3, -21, -1, 2},
+    //     {0, -5, 8, 10},
+    //     {24, 4, 12, -5},
+    //     {-4, -12, -6, 0},
+    // };
     
     // for (int i = 0; i < N; ++i) {
     //     for (int j = 0; j < N; ++i) {
     //         A[i][j] = rand() % 100;
     //     }
     // }
-
-    int answer = get_sum(A, 0);
-
-    for(int i=1; i<N; i++)
-    {
-        int t = get_sum(A, i);
-        if (t < answer) {
-            answer = t;
-        }
-    }
 
     return 0;
 }
