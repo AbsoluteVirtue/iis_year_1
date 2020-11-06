@@ -2,6 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdbool.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -9,26 +10,23 @@
 int main()
 {
 
-    FILE* file;
-    char name[] = "census.csv";
+    FILE* file = fopen("census.csv", "r");
 
     int count=0;
     char codenum[5];
-    char tempnum[5];
 
     bool play=true;
-    while(play==true)
+    while(play)
     {
-        file = fopen(name, "r");
-
         printf("Vvedite cod regiona\n");
 
-        gets(codenum);
+        fgets(codenum, 5, stdin);
 
         while(!feof(file))
         {
+            char tempnum[200] = {};
             count=0;
-            fgets(tempnum,6,file);	
+            fgets(tempnum, 200, file);
             int j=0;
 
             for(int i=1;i<6;i++)
@@ -49,7 +47,7 @@ int main()
 
             if(count==4)
             {
-                printf(tempnum);
+                printf("%s", tempnum);
                 break;
             }
         }
@@ -64,4 +62,6 @@ int main()
             play=false;
         }
     }
+
+    fclose(file);
 }
