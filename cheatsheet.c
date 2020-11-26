@@ -10,14 +10,14 @@
 #define ARRAY_LENGTH 8
 
 
-int _get_random_range(int lower, int upper) {
-
+int _get_random_range(int lower, int upper) 
+{
     return lower + ( rand() % (upper - lower) );
 }
 
 
-void input() {
-
+void input() 
+{
     char line[256];
     int i;
     if (fgets(line, sizeof(line), stdin)) {
@@ -29,62 +29,56 @@ void input() {
 }
 
 
-void print_array_string(char _a []) {
-
+void print_array_string(char _a [])
+{
     int size = strlen(_a);
-
     char * ap = (char *) malloc(size + 1);
-
-    for (int j = 0; j < size; j += 1) {
+    for (int j = 0; j < size; j += 1) 
+    {
         ap[j] = _a[j];
     }
     ap[size] = '\0';
-
-    for (int i = 0; i < size + 1; i += 1) {
+    for (int i = 0; i < size + 1; i += 1) 
+    {
         printf("%c\t", ap[i]);
     }
-
     free(ap);
-
 }
 
 
-void array_allocation(int size) {
-
+void array_allocation(int size)
+{
     char * pa = (char *) malloc(size + 1);
-
-    if (pa != NULL) {
-
-        for(int i = 0; i < size; i += 1) {
+    if (pa != NULL) 
+    {
+        for(int i = 0; i < size; i += 1) 
+        {
             char ch;
-            if (scanf("%c", &ch) == 1) {
+            if (scanf("%c", &ch) == 1) 
+            {
                 pa[i] = ch;
             }
         }
         pa[size] = '\0';
-
         printf("%s", pa);
     }
-
     free(pa);
-
 }
 
-
-void strcopy(char * p, char * new, int N) {
-
-    for (int i = 0; i<=N; i += 1) {
-
-        if (!p[i]) break;
-
+void strcopy(char * p, char * new, int N) 
+{
+    for (int i = 0; i<=N; i += 1) 
+    {
+        if (!p[i]) 
+            break;
         new[i] = p[i];
     }
     new[N] = '\0';
 }
 
 
-void single_pass_min_2(int * arr, int size) {
-
+void single_pass_min_2(int * arr, int size) 
+{
     int tmp_0 = arr[0];
     int tmp_1 = arr[1];
 
@@ -102,8 +96,8 @@ void single_pass_min_2(int * arr, int size) {
 }
 
 
-int fibonacci(int n) {
-
+int fibonacci(int n) 
+{
     int array [n];
     array[0] = 0;
     array[1] = 1;
@@ -114,7 +108,8 @@ int fibonacci(int n) {
 }
 
 
-void two_dim_array_single_pass(int array [][4], int N, int M) {
+void two_dim_array_single_pass(int array [][4], int N, int M) 
+{
     for (int * p = (int *)array; p < (int *)array + (N * M); ++p) {
         printf("%d\n", *p);
     }
@@ -135,6 +130,36 @@ int * merge_arrays(int * A, int * B, size_t N, size_t M) {
     }
 
     return C;
+}
+
+void printn(char c, int n) {
+    while ( --n >=0 ) 
+    {
+        putchar(c);
+    }
+}
+
+void reverse(int * head, int * tail) {
+    if ( head < tail ) {
+        *head = *head + *tail;
+        *tail = *head - *tail;
+        *head = *head - *tail;
+        reverse(head + 1, tail - 1);
+    }
+}
+
+char* Reverse(char text[]) {
+    char* begin = text;
+    char* end = text + strlen(text) - 1;
+    char tmp;
+ 
+    for (; begin < end; ++begin, --end) {
+        tmp = *begin;
+        *begin = *end;
+        *end = tmp;
+    }
+ 
+    return text;
 }
 
 
