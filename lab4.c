@@ -3,7 +3,6 @@
 
 #define N 6
 
-
 // структура, состоящая из примитивных типов
 typedef struct _time
 {
@@ -14,7 +13,6 @@ typedef struct _time
 
 } time;
 
-
 // структура с внутренней структурой
 typedef struct _record
 {
@@ -22,8 +20,8 @@ typedef struct _record
 
 } record;
 
-
-void _date_init(time * source) {
+void _date_init(time * source)
+{
     // изменение полей структуры по ссылке
     source->days = 1;
     source->months = 1;
@@ -36,11 +34,13 @@ int main(int argc, char const *argv[])
 {
     // выделение памяти под массив, все элементы обнуляются в случае успешной операции
     record * array = (record *)calloc(N, sizeof(record));
-    if (array == NULL) {
+    if (array == NULL)
+    {
         return -1;
     }
 
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i)
+    {
         // инициализация структуры по ссылке
         time date;
         _date_init(&date);
@@ -51,7 +51,8 @@ int main(int argc, char const *argv[])
         array[i] = rec;
     }
 
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i)
+    {
         printf("%d-%d-%d\n",
                 array[i].ts.years,
                 array[i].ts.months,

@@ -16,7 +16,6 @@ typedef struct sem
 } aero;
 
 
-
 int main(int argc, char const *argv[])
 {
     // сидирование генератора псевдо-случайных чисел текущим временем
@@ -24,11 +23,13 @@ int main(int argc, char const *argv[])
     // создание массива для хранения адресов строк из объектов типа aero
     aero ** A = (aero **)malloc(N * sizeof(aero *));
     
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i)
+    {
         // создание одной строки из объектов типа aero и сохранение ее адреса в массиве А
         A[i] = (aero *)malloc(N * sizeof(aero));
 
-        for (int j = 0; j < N; j++) {
+        for (int j = 0; j < N; j++)
+        {
             // сохранение значения поле объекта типа aero
             A[i][j].flight_capacity = rand() % 100;
 
@@ -47,7 +48,6 @@ int main(int argc, char const *argv[])
 
             printf("%s %d\t", A[i][j].flight_number, A[i][j].flight_capacity);
         }
-
         printf("\n");
     }
 
@@ -58,22 +58,24 @@ int main(int argc, char const *argv[])
     bool is_found = false;
 
     // ключевые слова and/not из библиотеки iso646
-    for (int i = 0; i < N and not is_found; ++i) {
-
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < N and not is_found; ++i)
+    {
+        for (int j = 0; j < N; j++)
+        {
             // сравнение двух строк символов, если результат равен 0 - строки совпадают
-            if (strcmp(A[i][j].flight_number, search_term) == 0) {
+            if (strcmp(A[i][j].flight_number, search_term) == 0)
+            {
                 printf("Flight #%s found (%d)\n", A[i][j].flight_number, A[i][j].flight_capacity);
                 is_found = true;
                 break;
             }
         }
-
     }
 
     // освобождение памяти в порядке, обратном порядку выделения
     // (чтобы не потерять доступ к участкам памяти, выделенным последними)
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i)
+    {
         // освобождение памяти каждого текстового поля из объекта
         free(A[i]->flight_number);
         // освобождение памяти каждой строки массива
