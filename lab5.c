@@ -4,7 +4,8 @@
 #include <string.h>
 
 
-typedef struct _string {
+typedef struct _string 
+{
     char * str;
     size_t length;
 } string;
@@ -14,7 +15,8 @@ int compar(const void * a, const void * b)
     return ((string *)a)->length - ((string *)b)->length;
 }
 
-int main() { 
+int main()
+{ 
     char str[256] = {};
     fgets(str, 256, stdin);
     if (str[strlen(str)] != ' ') 

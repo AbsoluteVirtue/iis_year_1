@@ -6,7 +6,6 @@
 #include <time.h>
 #include <iso646.h>
 
-
 #define ARRAY_LENGTH 8
 
 
@@ -15,19 +14,19 @@ int _get_random_range(int lower, int upper)
     return lower + ( rand() % (upper - lower) );
 }
 
-
 void input() 
 {
     char line[256];
     int i;
-    if (fgets(line, sizeof(line), stdin)) {
-        if (1 != sscanf(line, "%d", &i)) {
+    if (fgets(line, sizeof(line), stdin))
+    {
+        if (1 != sscanf(line, "%d", &i))
+        {
             printf("input error!");
             return;
         }
     }
 }
-
 
 void print_array_string(char _a [])
 {
@@ -44,7 +43,6 @@ void print_array_string(char _a [])
     }
     free(ap);
 }
-
 
 void array_allocation(int size)
 {
@@ -71,76 +69,85 @@ void strcopy(char * p, char * new, int N)
     {
         if (!p[i]) 
             break;
+
         new[i] = p[i];
     }
     new[N] = '\0';
 }
-
 
 void single_pass_min_2(int * arr, int size) 
 {
     int tmp_0 = arr[0];
     int tmp_1 = arr[1];
 
-    for (int i = 2; i < size; ++i) {
-        if (arr[i] < tmp_0) {
-            if (tmp_1 > tmp_0) {
+    for (int i = 2; i < size; ++i)
+    {
+        if (arr[i] < tmp_0)
+        {
+            if (tmp_1 > tmp_0)
+            {
                 tmp_1 = tmp_0;
             }
             tmp_0 = arr[i];
-        } else if (arr[i] < tmp_1 && arr[i] != tmp_0) {
+        }
+        else if (arr[i] < tmp_1 && arr[i] != tmp_0)
+        {
             tmp_1 = arr[i];
         }
     }
-
 }
-
 
 int fibonacci(int n) 
 {
     int array [n];
     array[0] = 0;
     array[1] = 1;
-    for (int i = 2; i <= n; ++i) {
+    for (int i = 2; i <= n; ++i)
+    {
         array[i] = array[i - 1] + array[i - 2];
     }
     return array[n];
 }
 
-
 void two_dim_array_single_pass(int array [][4], int N, int M) 
 {
-    for (int * p = (int *)array; p < (int *)array + (N * M); ++p) {
+    for (int * p = (int *)array; p < (int *)array + (N * M); ++p)
+    {
         printf("%d\n", *p);
     }
 }
 
-
-int * merge_arrays(int * A, int * B, size_t N, size_t M) {
+int * merge_arrays(int * A, int * B, size_t N, size_t M)
+{
     int a = N - 1, b = 0;
     int * C = (int *)calloc(N + M, sizeof(int));
     
-    for (int i = 0; i < N + N; ++i) {
-
-        if (B[b] >= A[a]) {
+    for (int i = 0; i < N + N; ++i)
+    {
+        if (B[b] >= A[a])
+        {
             C[i] = B[b++];
-        } else if (B[b] <= A[a]) {
+        }
+        else if (B[b] <= A[a])
+        {
             C[i] = A[a--];
         }
     }
-
     return C;
 }
 
-void printn(char c, int n) {
+void printn(char c, int n)
+{
     while ( --n >=0 ) 
     {
         putchar(c);
     }
 }
 
-void reverse(int * head, int * tail) {
-    if ( head < tail ) {
+void reverse(int * head, int * tail)
+{
+    if ( head < tail )
+    {
         *head = *head + *tail;
         *tail = *head - *tail;
         *head = *head - *tail;
@@ -148,12 +155,14 @@ void reverse(int * head, int * tail) {
     }
 }
 
-char* Reverse(char text[]) {
+char* Reverse(char text[])
+{
     char* begin = text;
     char* end = text + strlen(text) - 1;
     char tmp;
  
-    for (; begin < end; ++begin, --end) {
+    for (; begin < end; ++begin, --end)
+    {
         tmp = *begin;
         *begin = *end;
         *end = tmp;
@@ -162,9 +171,8 @@ char* Reverse(char text[]) {
     return text;
 }
 
-
-int main(int argc, char const *argv[]) {
-
+int main(int argc, char const *argv[])
+{
     int A[ARRAY_LENGTH] = {0, -2, 4, 0, -4, 3, -5, 1};
     int B[ARRAY_LENGTH] = {3, -4, 5, 7, 1, -2, 4, 0};
     int R[ARRAY_LENGTH * 2] = {};
@@ -176,24 +184,30 @@ int main(int argc, char const *argv[]) {
         int flag = -1;
         for (; i < ARRAY_LENGTH; i++)
         {
-            if (A[i] < min) {
+            if (A[i] < min)
+            {
                 min = A[i];
                 k = i;
                 flag = 1;
-            } else if (B[i] < min) {
+            }
+            else if (B[i] < min)
+            {
                 min = B[i];
                 k = i;
                 flag = 0;
             }
         }
-        if (flag != -1) {
-            if (flag) {
+        if (flag != -1) 
+        {
+            if (flag)
+            {
                 A[k] = INT_MAX;
-            } else {
+            }
+            else
+            {
                 B[k] = INT_MAX;
             }
         }
-        
         R[j] = min;
     }
 
