@@ -8,19 +8,27 @@ typedef struct _token
 {
     char * str;
     size_t length;
-} Token;
+} token;
 
-int compar(const void * a, const void * b) 
+
+int compar_struct(const void * a, const void * b) 
 {
-    return ((Token *)a)->length - ((Token *)b)->length;
+    return ((token *)a)->length - ((token *)b)->length;
 }
+
+
+int compar_string(const void * a, const void * b) 
+{
+    return **(char **)a - **(char **)b;
+}
+
 
 int main()
 { 
     char str[256] = {};
     fgets(str, 256, stdin);
     const char * delimiters = " ,.!?@#$%^&*();:\"\n\t";
-    Token words [10] = {};
+    token words [10] = {};
 
     char * token = strtok(str, delimiters);
     int i = 0;
@@ -43,8 +51,8 @@ int main()
             }
         }
     }
-    
-    qsort(words, 4, sizeof(Token), compar);
+
+    qsort(words, 4, sizeof(token), compar_struct);
 
     return 0;
 }

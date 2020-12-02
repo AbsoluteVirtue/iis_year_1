@@ -7,8 +7,8 @@
 #define ROWS 4
 
 
-int has_str(char * src_str, char * cmp_str) {
-
+int has_str(char * src_str, char * cmp_str)
+{
     char * items [ROWS] = {};
 
     char * tmp_str = (char *)malloc(strlen(src_str) + 1);
@@ -34,6 +34,7 @@ int has_str(char * src_str, char * cmp_str) {
 
     return 0;
 }
+
 
 void _strncpy(char * dest, const char * src, size_t count)
 {
@@ -102,7 +103,6 @@ int multi_array_q4_sum(size_t count, int mtx[][count])
 
 int main(int argc, char const *argv[])
 {
-
     FILE * input = fopen("test.csv", "r");
     if (input == NULL) {
         return 1;
