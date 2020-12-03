@@ -3,116 +3,120 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LINE 80
-#define ROWS 4
-
-
-int has_str(char * src_str, char * cmp_str)
-{
-    char * items [ROWS] = {};
-
-    char * tmp_str = (char *)malloc(strlen(src_str) + 1);
-    strcpy(tmp_str, src_str);
-
-    char * token = strtok(tmp_str, ",");
-    int i = 0;
-    while (token != NULL) 
-    {
-        items[i++] = token;
-        token = strtok(NULL, ",");
-    }
-
-    free(tmp_str);
-
-    char * fmt_str;
-    sprintf(fmt_str, "%s,%s", items[0], items[1]);
-
-    if (!strcmp(fmt_str, cmp_str))
-    {
-        return 1;
-    }
-
-    return 0;
-}
+#define N 80
 
 
 void _strncpy(char * dest, const char * src, size_t count)
 {
-    for (size_t i = 0; i < count && i < strlen(src); i++)
+    size_t len = (count > strlen(src)) ? strlen(src) : count;
+    for (size_t i = 0; i < len; i++)
     {
         dest[i] = src[i];
     }
-    dest[(count > strlen(src)) ? strlen(src) : count] = '\0';
+    dest[len] = '\0';
+}
+
+
+int _strncmp(const char * lhs, const char * rhs, size_t count)
+{
+    size_t len = (strlen(rhs) > strlen(lhs)) ? strlen(lhs) : strlen(rhs);
+    size_t k = (count > len) ? len : count;
+    for (size_t i = 0; i < k; i++)
+    {
+        if (lhs[i] != rhs[i]) 
+        {
+            return lhs[i] - rhs[i];
+        }
+    }
+    return 0;
 }
 
 
 int _atoi(const char * src) 
 {
     int res = 0;
-    char buf[80] = {};
-    size_t k = 0;
-    for (size_t i = 0; i < strlen(src); i++)
+    char buf [80] = {};
+    size_t i = 0, k = 0;
+    while (src[i])
     {
-        if (isdigit(src[i]))
-        {
+        if(isdigit(src[i])) {
             buf[k++] = src[i];
         }
+        ++i;
     }
-    sscanf(buf, "%d", &res);
+    sscanf(buf, "%i", &res);
     return res;
 }
 
 
-void increment_bits(short * bits, size_t count) 
+void bytewise_inc(unsigned short * src, size_t count) 
 {
-    size_t k = count - 1;
-    while(k >= 0) 
+    for (size_t i = count - 1; i >= 0; i--)
     {
-        if(!bits[k])
+        if (src[i]) 
         {
-            bits[k] = 1;
+            src[i] = 0;
+        } else {
+            src[i] = 1;
             return;
         }
-        else
-        {
-            bits[k] = 0;
-        }
-        --k;
     }
-}
-
-
-int multi_array_q4_sum(size_t count, int mtx[][count]) 
-{
-    int sum = 0, k = 0;
-    for (size_t x = 0; x < count; ++x)
-    {
-        for (size_t y = 0; y < count; ++y)
-        {
-            if(x == k && y <= count - 1 - k && y >= k) 
-            {
-                sum += mtx[y][x];
-                printf("%d\n", mtx[y][x]);
-            }
-        }
-        ++k;
-    }
-    return sum;
 }
 
 
 int main(int argc, char const *argv[])
 {
-    FILE * input = fopen("test.csv", "r");
-    if (input == NULL) {
-        return 1;
+    // " -123junk"  -123
+    // "junk"       0
+    // "-junk123"   123
+    const char * test = "Happy New Year 2021!";
+    int r = _atoi(test);
+    printf("%d", r);
+
+    // 128 64 32 16 8 4 2 1
+
+    //   7  6  5  4 3 2 1 0
+
+    //   1  0  1  0 1 1 1 1     175
+    //   0  0  0  1 0 1 0 0     20
+
+    unsigned short b [] = {0, 0,0, 1, 0, 0,1,1};
+
+    bytewise_inc(b, 8);
+    for (size_t i = 0; i < 8; i++)
+    {
+       printf("%i", b[i]);
     }
 
-    char line [MAX_LINE] = {};
+    printf("\n");
 
-    while(fgets(line, MAX_LINE, input)) {
-        printf("%s", line);
+    int m [N][N] = {
+        {1, 2, 3, 4, 9},
+        {5, 6, 7, 8, 1},
+        {1, 2, 3, 4, 8},
+        {5, 6, 7, 8, 0},
+        {5, 6, 7, 8, 1},
+    };
+
+    /*
+        \ 1 /
+         \ /
+        4/ \2
+        / 3 \
+    */
+
+    int sum = 0;
+    for (size_t i = 0; i < (N / 2) + 1; i++)
+    {
+        for (size_t j = 0; j < N; j++)
+        {
+            if (j <= N - 1 - i && j >= i) 
+            {
+                sum += m[j][i];
+                printf("%d", m[j][i]);
+            }
+        }
     }
 
-    fclose(input);
+    printf("\n%d", sum);
 }

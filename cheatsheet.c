@@ -9,10 +9,40 @@
 #define ARRAY_LENGTH 8
 
 
+int has_str(char * src_str, char * cmp_str)
+{
+    char * items [80] = {};
+
+    char * tmp_str = (char *)malloc(strlen(src_str) + 1);
+    strcpy(tmp_str, src_str);
+
+    char * token = strtok(tmp_str, ",");
+    int i = 0;
+    while (token != NULL) 
+    {
+        items[i++] = token;
+        token = strtok(NULL, ",");
+    }
+
+    free(tmp_str);
+
+    char * fmt_str;
+    sprintf(fmt_str, "%s,%s", items[0], items[1]);
+
+    if (!strcmp(fmt_str, cmp_str))
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+
 int _get_random_range(int lower, int upper) 
 {
     return lower + ( rand() % (upper - lower) );
 }
+
 
 void input() 
 {
@@ -27,6 +57,7 @@ void input()
         }
     }
 }
+
 
 void print_array_string(char _a [])
 {
@@ -43,6 +74,7 @@ void print_array_string(char _a [])
     }
     free(ap);
 }
+
 
 void array_allocation(int size)
 {
@@ -63,6 +95,7 @@ void array_allocation(int size)
     free(pa);
 }
 
+
 void strcopy(char * p, char * new, int N) 
 {
     for (int i = 0; i<=N; i += 1) 
@@ -74,6 +107,7 @@ void strcopy(char * p, char * new, int N)
     }
     new[N] = '\0';
 }
+
 
 void single_pass_min_2(int * arr, int size) 
 {
@@ -97,6 +131,7 @@ void single_pass_min_2(int * arr, int size)
     }
 }
 
+
 int fibonacci(int n) 
 {
     int array [n];
@@ -109,6 +144,7 @@ int fibonacci(int n)
     return array[n];
 }
 
+
 void two_dim_array_single_pass(int array [][4], int N, int M) 
 {
     for (int * p = (int *)array; p < (int *)array + (N * M); ++p)
@@ -116,6 +152,7 @@ void two_dim_array_single_pass(int array [][4], int N, int M)
         printf("%d\n", *p);
     }
 }
+
 
 int * merge_arrays(int * A, int * B, size_t N, size_t M)
 {
@@ -136,6 +173,7 @@ int * merge_arrays(int * A, int * B, size_t N, size_t M)
     return C;
 }
 
+
 void printn(char c, int n)
 {
     while ( --n >=0 ) 
@@ -143,6 +181,7 @@ void printn(char c, int n)
         putchar(c);
     }
 }
+
 
 void reverse(int * head, int * tail)
 {
@@ -154,6 +193,7 @@ void reverse(int * head, int * tail)
         reverse(head + 1, tail - 1);
     }
 }
+
 
 char* Reverse(char text[])
 {
@@ -170,6 +210,7 @@ char* Reverse(char text[])
  
     return text;
 }
+
 
 int main(int argc, char const *argv[])
 {
