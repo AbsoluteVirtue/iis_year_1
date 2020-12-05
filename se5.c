@@ -1,21 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 #define ARR_LEN 7
 #define NO_OF_ROWS 3
 #define ROW_LENGTH 4
 
 // отсортировать элементы по модулю с помощью qsort
-int _compare(const void * a, const void * b)
+int _compare(const void *a, const void *b)
 {
-    return ( abs(*(int *)a) - abs(*(int *)b) );
+    return (abs(*(int *)a) - abs(*(int *)b));
 }
-
 
 int main(int argc, char const *argv[])
 {
-    int array_lit [ARR_LEN] = {0, -90, 0, 78, -13, -456, 0};
+    int array_lit[ARR_LEN] = {0, -90, 0, 78, -13, -456, 0};
     // найти минимальный элемент, количество нулевых элементов, четные/нечетные числа в массиве
     int min = 0;
     int k = 0;
@@ -34,7 +32,7 @@ int main(int argc, char const *argv[])
         if (array_lit[i] % 2)
         {
             printf("%d is odd\n", array_lit[i]);
-        } 
+        }
         else
         {
             printf("%d is even\n", array_lit[i]);
@@ -43,7 +41,7 @@ int main(int argc, char const *argv[])
 
     // найти сумму элементов начиная с индекса, хранящегося в переменной min
     int sum = 0;
-    for ( ;min < ARR_LEN; printf("%d", min++))
+    for (; min < ARR_LEN; printf("%d", min++))
     {
         sum += array_lit[min];
     }
@@ -74,7 +72,7 @@ int main(int argc, char const *argv[])
     {
         for (int j = 0; j < NO_OF_ROWS; ++j)
         {
-            if(array[j][i] == 0)
+            if (array[j][i] == 0)
             {
                 printf("%d", j + 1);
             }

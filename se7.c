@@ -5,24 +5,22 @@
 #include <stdbool.h>
 #include <time.h>
 
-
 #define N 2
 
 // объявление структуры
 typedef struct sem
 {
-    char * flight_number;
+    char *flight_number;
     int flight_capacity;
 } aero;
-
 
 int main(int argc, char const *argv[])
 {
     // сидирование генератора псевдо-случайных чисел текущим временем
     rands(time(0));
     // создание массива для хранения адресов строк из объектов типа aero
-    aero ** A = (aero **)malloc(N * sizeof(aero *));
-    
+    aero **A = (aero **)malloc(N * sizeof(aero *));
+
     for (int i = 0; i < N; ++i)
     {
         // создание одной строки из объектов типа aero и сохранение ее адреса в массиве А
@@ -34,7 +32,7 @@ int main(int argc, char const *argv[])
             A[i][j].flight_capacity = rand() % 100;
 
             // обнуление буфера для ввода с клавиатуры
-            char buf_num [80] = {};
+            char buf_num[80] = {};
             scanf("%s", buf_num);
 
             // расчет длины строки, введенной с клавиатуры
@@ -51,7 +49,7 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
-    char search_term [80] = {};
+    char search_term[80] = {};
     scanf("%s", search_term);
 
     // тип bool из библиотеки stdbool
