@@ -26,7 +26,6 @@ void strncpy_smart(char *dest, const char *src, int n)
 }
 
 
-
 void main(int argc, char const *argv[])
 {
     // найти длину самой длинной цепочки повторяющихся элементов, идущих подряд
@@ -143,6 +142,4 @@ void main(int argc, char const *argv[])
         }
         R[j] = min;
     }
-
-    return;
 }
