@@ -10,20 +10,6 @@
 #define false 0
 
 
-void strncpy_simple(char *dest, const char *src, int n)
-{
-    for (int i = 0;i < n; ++i)
-    {
-        dest[i] = src[i];
-        if (src[i] == '\0')
-        {
-            return;
-        }
-    }
-    dest[n] = '\0';
-}
-
-
 void strncpy_smart(char *dest, const char *src, int n)
 {
     do
@@ -113,12 +99,7 @@ void main(int argc, char const *argv[])
     printf("%d", fib_array[ARR_LENGTH]);
 
     // копирование N символов из одной строки в другую
-    // простая реализация, количество копируемых символов не может превышать длину принимающей строки 
-    char dest1 [ARR_LENGTH] = {};
-    strncpy_simple(dest1, "hello", 7);
-    printf("%s", dest1);
-
-    // бонус: реализация копирования с указателями 
+    // реализация копирования с указателями 
     char dest2 [ARR_LENGTH] = {};
     strncpy_smart(dest2, "world", 4);
     printf("%s", dest2);

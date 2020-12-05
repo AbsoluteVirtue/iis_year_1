@@ -9,7 +9,6 @@
 
 int main()
 {
-
     FILE* file = fopen("census.csv", "r");
 
     int count=0;
