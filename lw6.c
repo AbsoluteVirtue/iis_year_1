@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NO_OF_BOOKS 10
-
 typedef unsigned short uint8;
 
 struct book
@@ -14,16 +12,18 @@ struct book
     uint8 yop;
 };
 
-void init(struct book *bp);
-void fill(struct book *bp, const char *a, const char *t, uint8 y);
-void clear(struct book *bp);
-int comp(const void *a, const void *b);
-void generate_author(char *tmp);
-void generate_title(char *tmp);
+void init(struct book * bp);
+void fill(struct book * bp, const char * a, const char * t, uint8 y);
+void clear(struct book * bp);
+int comp(const void * a, const void * b);
+void generate_author(char * tmp);
+void generate_title(char * tmp);
 
-int main(int argc, char const *argv[])
+int main(int argc, char const * argv[])
 {
-    struct book *sob = (struct book *)malloc(NO_OF_BOOKS * sizeof(struct book));
+    #define NO_OF_BOOKS 10
+
+    struct book * sob = (struct book *)malloc(NO_OF_BOOKS * sizeof(struct book));
 
     for (size_t i = 0; i < NO_OF_BOOKS; i++)
     {
@@ -61,21 +61,21 @@ int main(int argc, char const *argv[])
     free(sob);
 }
 
-void init(struct book *bp)
+void init(struct book * bp)
 {
     bp->author = NULL;
     bp->title = NULL;
     bp->yop = 0;
 }
 
-void fill(struct book *bp, const char *a, const char *t, uint8 y)
+void fill(struct book * bp, const char * a, const char * t, uint8 y)
 {
     bp->yop = y;
     bp->author = strdup(a);
     bp->title = strdup(t);
 }
 
-void clear(struct book *bp)
+void clear(struct book * bp)
 {
     if (bp->author)
     {
@@ -88,9 +88,9 @@ void clear(struct book *bp)
     init(bp);
 }
 
-int comp(const void *a, const void *b)
+int comp(const void * a, const void * b)
 {
-    return (((struct book *)a)->yop) - (((struct book *)b)->yop);
+    return *(((struct book *)a)->author) - *(((struct book *)b)->author);
 }
 
 int _get_random_range(int lower, int upper)
@@ -98,7 +98,7 @@ int _get_random_range(int lower, int upper)
     return lower + (rand() % (upper - lower));
 }
 
-void generate_author(char *tmp)
+void generate_author(char * tmp)
 {
     for (size_t i = 0; i < 9; i++)
     {
@@ -120,7 +120,7 @@ void generate_author(char *tmp)
     tmp[9] = '\0';
 }
 
-void generate_title(char *tmp)
+void generate_title(char * tmp)
 {
     tmp[0] = (char)_get_random_range(65, 90);
     for (size_t i = 1; i < 9; i++)
