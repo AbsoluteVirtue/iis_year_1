@@ -8,13 +8,11 @@ void clear(int ** array_pointer, int rows);
 void print(int ** array_pointer, int rows, int columns);
 void menu_example();
 
-
 int main(int argc, char const *argv[])
 {
     menu_example();
     return 0;
 }
-
 
 void menu_example() 
 {
@@ -27,21 +25,29 @@ void menu_example()
                "1. memory\n2. print\n6. clear \n0. exit\n");
 
         scanf("%i", &option);
-        if (!option) {
+        if (!option) 
+        {
             exit(0);
-        } else if (!matrix_pointer && option == 1) {
+        } 
+        else if (!matrix_pointer && option == 1) 
+        {
             memory(&matrix_pointer, rows_number, columns_number);
-        } else if (matrix_pointer && option == 2) {
+        } 
+        else if (matrix_pointer && option == 2) 
+        {
             print(matrix_pointer, rows_number, columns_number);
-        } else if (matrix_pointer && option == 6) {
+        } 
+        else if (matrix_pointer && option == 6) 
+        {
             clear(matrix_pointer, rows_number);
             matrix_pointer = NULL;
-        }else {
+        }
+        else 
+        {
             printf("invalid input, ");
         }
     }
 }
-
 
 void memory(int *** array_pointer_reference, int rows, int columns) 
 {
@@ -52,7 +58,6 @@ void memory(int *** array_pointer_reference, int rows, int columns)
     }
 }
 
-
 void clear(int ** array_pointer, int rows) 
 {
     for (size_t i = 0; i < rows; i++)
@@ -61,7 +66,6 @@ void clear(int ** array_pointer, int rows)
     }
     free(array_pointer);
 }
-
 
 void print(int ** array_pointer, int rows, int columns)
 {
