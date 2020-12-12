@@ -9,18 +9,16 @@ typedef struct _time
     int days;
     int months;
     int years;
-    char * name;
-
+    char *name;
 } time;
 
 // структура с внутренней структурой
 typedef struct _record
 {
     time ts;
-
 } record;
 
-void _date_init(time * source)
+void _date_init(time *source)
 {
     // изменение полей структуры по ссылке
     source->days = 1;
@@ -29,11 +27,10 @@ void _date_init(time * source)
     source->name = NULL;
 }
 
-
 int main(int argc, char const *argv[])
 {
     // выделение памяти под массив, все элементы обнуляются в случае успешной операции
-    record * array = (record *)calloc(N, sizeof(record));
+    record *array = (record *)calloc(N, sizeof(record));
     if (array == NULL)
     {
         return -1;
@@ -53,10 +50,11 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < N; ++i)
     {
-        printf("%d-%d-%d\n",
-                array[i].ts.years,
-                array[i].ts.months,
-                array[i].ts.days);
+        printf(
+            "%d-%d-%d\n",
+            array[i].ts.years,
+            array[i].ts.months,
+            array[i].ts.days);
     }
 
     // освобождение памяти, выделенной с помощью calloc

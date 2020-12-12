@@ -1,18 +1,20 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
-
 #define ERROR 100000.
 
-
-int scan_1() {
+int scan_1()
+{
     char line[256];
     int i;
-    if (fgets(line, sizeof(line), stdin)) {
+    if (fgets(line, sizeof(line), stdin))
+    {
         int res = sscanf(line, "%d", &i);
-        if (1 != res) {
+        if (1 != res)
+        {
             printf("error!");
             return 0;
         }
@@ -21,48 +23,50 @@ int scan_1() {
     return -1;
 }
 
-
-void print(const char * str) {
-
-    _Bool a = '\0';
-
-    for (int idx=0; str[idx]; idx += 1) {
-
+void print(const char *str)
+{
+    for (int idx = 0; str[idx]; idx += 1)
+    {
         printf("%c", str[idx]);
-
     }
-
 }
 
-
-float function_set(float x, float a, float b, float c) {
-    
+float function_set(float x, float a, float b, float c)
+{
     float result = 0.0;
-
-    if ((x + a) < 0.0 && c == 0.0) {
-        result = (1.0/(a * x)) - b;
-    } else if ((x + a) > 0.0 && c != 0.0) {
-        if (!sin(x)) { 
+    if ((x + a) < 0.0 && c == 0.0)
+    {
+        result = (1.0 / (a * x)) - b;
+    }
+    else if ((x + a) > 0.0 && c != 0.0)
+    {
+        if (!sin(x))
+        {
             return ERROR;
         }
-        result = (x - a)/sin(x);
-    } else {
-        result = (x * 10.0)/(c - 6.0);
+        result = (x - a) / sin(x);
+    }
+    else
+    {
+        result = (x * 10.0) / (c - 6.0);
     };
 
-    if( ! ( ((int)floor(a) | (int)floor(b)) & ((int)floor(a) | (int)floor(c)))) { // 00001010 & 00000100 = 00000000
+    if (!(((int)floor(a) | (int)floor(b)) & ((int)floor(a) | (int)floor(c))))
+    { // 00001010 & 00000100 = 00000000
         printf("integral value");
-    } else {
+    }
+    else
+    {
         printf("floating point value");
     }
 
     return result;
 }
 
-
-int main(int argc, char *argv[]) {
-
-    if (argc < 7) {
+int main(int argc, char *argv[])
+{
+    if (argc < 7)
+    {
         fputs("invalid argument count\n", stderr);
         return 1;
     }
@@ -71,9 +75,11 @@ int main(int argc, char *argv[]) {
     float h = (float)atof(argv[2]);
     float step = (float)atof(argv[3]);
 
-    do {
+    do
+    {
         float var = function_set(k, (float)atof(argv[4]), (float)atof(argv[5]), (float)atof(argv[6]));
-        if (var == ERROR) {
+        if (var == ERROR)
+        {
             printf("error\n");
             continue;
         }

@@ -1,18 +1,65 @@
-#include <stdlib.h>
+#include <iso646.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-
 
 typedef unsigned short uint8;
 
-
 struct book
 {
-    char * author;
-    char * title;
-    uint yop;
+    char *author;
+    char *title;
+    uint8 yop;
 };
 
+void init(struct book * bp);
+void fill(struct book * bp, const char * a, const char * t, uint8 y);
+void clear(struct book * bp);
+int comp(const void * a, const void * b);
+void generate_author(char * tmp);
+void generate_title(char * tmp);
+
+int main(int argc, char const * argv[])
+{
+    #define NO_OF_BOOKS 10
+
+    struct book * sob = (struct book *)malloc(NO_OF_BOOKS * sizeof(struct book));
+
+    for (size_t i = 0; i < NO_OF_BOOKS; i++)
+    {
+        struct book b;
+        init(&b);
+        char tmp_a[10] = {};
+        generate_author(tmp_a);
+        char tmp_t[10] = {};
+        generate_title(tmp_t);
+        fill(&b, tmp_a, tmp_t, 1900 + (rand() % 100));
+        printf(
+            "%s: \"%s\" (%d)\n",
+            b.author,
+            b.title,
+            b.yop);
+        sob[i] = b;
+    }
+
+    sob[0].yop = 1965;
+
+    qsort(sob, NO_OF_BOOKS, sizeof(struct book), comp);
+
+    printf("-----------------------------\n");
+
+    for (size_t i = 0; i < NO_OF_BOOKS; i++)
+    {
+        printf(
+            "%s: \"%s\" (%d)\n",
+            sob[i].author,
+            sob[i].title,
+            sob[i].yop);
+        clear(&sob[i]);
+    }
+
+    free(sob);
+}
 
 void init(struct book * bp)
 {
@@ -21,29 +68,18 @@ void init(struct book * bp)
     bp->yop = 0;
 }
 
-
-void fill(struct book * bp, const char * a, const char * t, uint8 y) 
+void fill(struct book * bp, const char * a, const char * t, uint8 y)
 {
     bp->yop = y;
-    bp->author = (char *)malloc(strlen(a) + 1);
-    if (bp->author)
-    {
-        strcpy(bp->author, a);
-    }
-    bp->title = (char *)malloc(strlen(t) + 1);
-    if (bp->title)
-    {
-        strcpy(bp->title, t);
-    }
+    bp->author = strdup(a);
+    bp->title = strdup(t);
 }
-
 
 void clear(struct book * bp)
 {
-    if (bp->author) 
+    if (bp->author)
     {
         free(bp->author);
-
     }
     if (bp->title)
     {
@@ -52,28 +88,44 @@ void clear(struct book * bp)
     init(bp);
 }
 
-
-int main(int argc, char const *argv[])
+int comp(const void * a, const void * b)
 {
-    struct book b1, b2;
-    init(&b1);
-    fill(&b1, "John Milton", "Paradise Lost", 2020);
-    
-    init(&b2);
-    fill(&b2, "James Joyce", "Ulysses", 2019);
+    return *(((struct book *)a)->author) - *(((struct book *)b)->author);
+}
 
-    struct book * sob = (struct book *)malloc(2 * sizeof(struct book));
-    sob[0] = b1;
-    sob[1] = b2;
+int _get_random_range(int lower, int upper)
+{
+    return lower + (rand() % (upper - lower));
+}
 
-    for (size_t i = 0; i < 2; i++)
+void generate_author(char * tmp)
+{
+    for (size_t i = 0; i < 9; i++)
     {
-        printf("%s, \"%s\" (%d)\n",
-            sob[i].author, sob[i].title, sob[i].yop);
+        if (i == 0 or i == 6)
+        {
+            tmp[i] = (char)_get_random_range((int)'A', (int)'Z');
+        }
+        else if (i == 4)
+        {
+            tmp[i] = ',';
+        }
+        else if (i == 5)
+        {
+            tmp[i] = ' ';
+        }
+        else
+            tmp[i] = (char)_get_random_range((int)'a', (int)'z');
     }
+    tmp[9] = '\0';
+}
 
-    b1.yop = 1965;
-
-    clear(&b1);
-    clear(&b2);
+void generate_title(char * tmp)
+{
+    tmp[0] = (char)_get_random_range(65, 90);
+    for (size_t i = 1; i < 9; i++)
+    {
+        tmp[i] = (char)_get_random_range(97, 122);
+    }
+    tmp[9] = '\0';
 }
